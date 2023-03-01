@@ -1,25 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Sidebar from './components/Sidebar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className='max-w-[1200px] mx-auto'>
+      <h1 className='font-semibold ml-5 mt-5'> Simple Image Editor </h1>
+
+      <section className='flex'>
+        
+          <Sidebar />
+        
+          Main Editor
+      </section>
+
+      <footer className='my-20 text-center'>
+        <p> Open source. See repo here </p>
+        <p> Made by <a href="https://about.hilman.space/" >hilman</a>  </p>
+      </footer>
+    </section>
   );
 }
 

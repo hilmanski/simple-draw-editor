@@ -1,22 +1,28 @@
 import React from 'react';
-import Sidebar from './components/Sidebar';
+
+import MainEditor from './components/Layout/MainEditor';
+import Sidebar from './components/Layout/Sidebar';
+import ElementEditor from './components/Layout/ElementEditor';
 
 function App() {
   return (
-    <section className='max-w-[1200px] mx-auto'>
-      <h1 className='font-semibold ml-5 mt-5'> Simple Image Editor </h1>
-
+    <section className=''>
       <section className='flex'>
         
-          <Sidebar />
-        
-          Main Editor
+          <section className='w-2/12 pl-10 pr-5 bg-gray-300 min-h-screen'>
+            <Sidebar />
+          </section>
+
+          <section className='w-8/12'>
+            <MainEditor />
+          </section>
+
+          <section className='w-2/12'>
+            <ElementEditor />
+          </section>
+
       </section>
 
-      <footer className='my-20 text-center'>
-        <p> Open source. See repo here </p>
-        <p> Made by <a href="https://about.hilman.space/" >hilman</a>  </p>
-      </footer>
     </section>
   );
 }

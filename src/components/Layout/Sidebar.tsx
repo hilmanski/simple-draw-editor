@@ -10,7 +10,16 @@ export default function Sidebar() {
             </section>
 
             <footer className="absolute bottom-2 text-sm">
-                <p> Open source. See repo here </p>
+                <p>
+                    {' '}
+                    Open source.
+                    <a
+                        className="underline"
+                        href="https://github.com/hilmanski/simple-draw-editor">
+                        {' '}
+                        See repo here{' '}
+                    </a>
+                </p>
                 <p>
                     {' '}
                     Made by &nbsp;

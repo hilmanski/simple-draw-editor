@@ -4,7 +4,14 @@ Early progress - not ready yet
 
 # About
 
-Simple Draw - with text and element's drag n drop feature
+Simple Draw - with text and element's drag n drop feature  
+Using raw HTML element, without canvas
+
+## Usage
+
+-   Change frame (main backgorund) -> (default setting on right side) change the detail
+-   Add text anywhere -> Choose text mode on Setting, then click on frame area
+-   Edit text -> double click on text
 
 ## DOING
 

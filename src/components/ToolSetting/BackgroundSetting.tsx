@@ -29,7 +29,7 @@ export default function BackgroundSetting() {
                 <input
                     type="number"
                     id="width"
-                    className="w-[70px] ml-4 mr-2"
+                    className="w-[70px] ml-4 p-1 mr-2"
                     value={width}
                     onChange={updateWidth}
                 />{' '}

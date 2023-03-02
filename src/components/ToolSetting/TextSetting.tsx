@@ -10,9 +10,9 @@ export default function TextSetting() {
     const [fontFamily, setFontFamily] = useState<string>('sans-serif')
     const [color, setColor] = useState<string>('#000000')
 
-    const updateFontSize = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFontSize(parseInt(e.target.value))
-        updateElement('fontSize', parseInt(e.target.value))
+    const updateFontSize = (newFontSize: number) => {
+        setFontSize(newFontSize)
+        updateElement('fontSize', newFontSize)
     }
 
     const updateFontFamily = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -69,9 +69,29 @@ export default function TextSetting() {
                     id="fontSize"
                     className="mr-2 p-1 rounded w-[120px]"
                     value={fontSize}
-                    onChange={updateFontSize}
+                    onChange={(e) => updateFontSize(parseInt(e.target.value))}
                 />{' '}
                 px
+            </div>
+
+            <div className="mt-2 flex space-x-1 text-xs">
+                <span
+                    onClick={() => updateFontSize(35)}
+                    className="py-1 px-2 rounded border-slate-900 border cursor-pointer">
+                    XL
+                </span>
+
+                <span
+                    onClick={() => updateFontSize(24)}
+                    className="py-1 px-2 rounded border-slate-900 border cursor-pointer">
+                    MD
+                </span>
+
+                <span
+                    onClick={() => updateFontSize(20)}
+                    className="py-1 px-2 rounded border-slate-900 border cursor-pointer">
+                    S
+                </span>
             </div>
 
             <div>

@@ -17,19 +17,18 @@ Using raw HTML element, without canvas
 
 ## DOING
 
--   add text [DONE]
-
-    -   reposition [DONE]
-    -   change color [DONE]
-    -   change size [DONE]
-    -   edit text on double click (how to make it editable)
-
 -   Show element list in FIles/Elements
     Name = text {id} -> save name in state - name could be edited (name shown in files/elements)
+    delete
+    hide (eye icon)
 
 ## TODO
 
--   add shape
+-   add shape (SVG ?) - resizeale on drage up/down
+-   text - add background and padding - add rounded radius - change to textarea for multiline
+-   Shortcuts: - change setting menu - delete when select element
+-   save progress on localStorage
+-   save preset
 -   save action object -> for undo/redo
     research best way for this: https://www.google.com/search?q=how+to+implement+undo+redo+action+on+reactjs&oq=how+to+implement+undo+redo+action+on+reactjs&aqs=chrome..69i57j33i10i160j33i22i29i30.6951j0j1&sourceid=chrome&ie=UTF-8
 

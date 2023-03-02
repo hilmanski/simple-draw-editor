@@ -15,6 +15,7 @@ export const addNewTextElement = (x: number, y: number) => {
             fontFamily: 'sans-serif',
             color: '#000000',
         },
+        visible: true,
         onEditMode: false,
     }
 

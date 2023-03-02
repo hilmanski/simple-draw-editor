@@ -6,59 +6,26 @@ export default function TextSetting() {
     const [drawElements, setDrawElements] = useAtom(drawElementsAtom)
     const [currentElement, setCurrentElement] = useAtom(currentElementAtom)
 
-    const [fontSize, setFontSize] = useState<number>(16)
+    const [fontSize, setFontSize] = useState<number>(24)
     const [fontFamily, setFontFamily] = useState<string>('sans-serif')
     const [color, setColor] = useState<string>('#000000')
 
     const updateFontSize = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFontSize(parseInt(e.target.value))
-
-        if (currentElement == null) return
-
-        if (currentElement.type === 'text') {
-            const newElements = drawElements.map((element) => {
-                if (element.id === currentElement.id) {
-                    return {
-                        ...element,
-                        detail: {
-                            ...element.detail,
-                            fontSize: parseInt(e.target.value),
-                        },
-                    }
-                }
-                return element
-            })
-
-            setDrawElements(newElements)
-        }
+        updateElement('fontSize', parseInt(e.target.value))
     }
 
     const updateFontFamily = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setFontFamily(e.target.value)
-
-        if (currentElement == null) return
-
-        if (currentElement.type === 'text') {
-            const newElements = drawElements.map((element) => {
-                if (element.id === currentElement.id) {
-                    return {
-                        ...element,
-                        detail: {
-                            ...element.detail,
-                            fontFamily: e.target.value,
-                        },
-                    }
-                }
-                return element
-            })
-
-            setDrawElements(newElements)
-        }
+        updateElement('fontFamily', e.target.value)
     }
 
     const updateColor = (e: React.ChangeEvent<HTMLInputElement>) => {
         setColor(e.target.value)
+        updateElement('color', e.target.value)
+    }
 
+    const updateElement = (key: string, value: any) => {
         if (currentElement == null) return
 
         if (currentElement.type === 'text') {
@@ -68,7 +35,7 @@ export default function TextSetting() {
                         ...element,
                         detail: {
                             ...element.detail,
-                            color: e.target.value,
+                            [key]: value,
                         },
                     }
                 }
@@ -80,8 +47,6 @@ export default function TextSetting() {
     }
 
     useEffect(() => {
-        console.log(currentElement)
-
         if (currentElement == null) return
 
         if (currentElement.type === 'text') {
@@ -102,7 +67,7 @@ export default function TextSetting() {
                 <input
                     type="number"
                     id="fontSize"
-                    className="mr-2 p-1 rounded w-[50%]"
+                    className="mr-2 p-1 rounded w-[120px]"
                     value={fontSize}
                     onChange={updateFontSize}
                 />{' '}
@@ -115,7 +80,7 @@ export default function TextSetting() {
                 </label>
                 <select
                     id="fontFamily"
-                    className="mr-2 p-1 rounded"
+                    className="mr-2 p-1 rounded w-[120px]"
                     value={fontFamily}
                     onChange={updateFontFamily}>
                     <option value="sans-serif">Sans Serif</option>
@@ -131,7 +96,7 @@ export default function TextSetting() {
                 <input
                     type="color"
                     id="color"
-                    className="mr-2 p-1 rounded"
+                    className="mr-2 p-1 rounded w-[120px]"
                     value={color}
                     onChange={updateColor}
                 />

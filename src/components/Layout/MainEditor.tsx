@@ -73,7 +73,7 @@ export default function MainEditor() {
             y: y,
             detail: {
                 text: 'Text',
-                fontSize: 16,
+                fontSize: 24,
                 fontFamily: 'sans-serif',
                 color: '#000000',
             },

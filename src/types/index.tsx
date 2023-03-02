@@ -7,6 +7,7 @@ export type ShapeType = 'rectangle' | 'circle' | 'triangle' | 'line'
 
 export type DrawElementType = {
     type: ToolType
+    subType?: string
     id: number
     x: number
     y: number

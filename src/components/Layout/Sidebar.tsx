@@ -27,6 +27,17 @@ export default function Sidebar() {
         setDrawElements(newDrawElements)
     }
 
+    const getDetails = (element: any) => {
+        switch (element.type) {
+            case 'text':
+                return element.detail.text?.substring(0, 10)
+            case 'shape':
+                return element.detail.shape
+            default:
+                return ''
+        }
+    }
+
     return (
         <aside className="">
             <h1 className="font-semibold text-xl mb-5 mt-5">
@@ -44,8 +55,7 @@ export default function Sidebar() {
                                 className={`
                                 ${element.visible ? '' : 'text-gray-700'}
                                 `}>
-                                {element.type} -{' '}
-                                {element.detail.text.substring(0, 10)}
+                                {element.type} - {getDetails(element)}
                             </p>
 
                             <div className="flex space-x-2">

@@ -4,7 +4,7 @@ import { currentElementAtom, drawElementsAtom } from '../../state/jotaiState'
 
 export default function TextSetting() {
     const [drawElements, setDrawElements] = useAtom(drawElementsAtom)
-    const [currentElement, setCurrentElement] = useAtom(currentElementAtom)
+    const [currentElement, _] = useAtom(currentElementAtom)
 
     const [fontSize, setFontSize] = useState<number>(24)
     const [fontFamily, setFontFamily] = useState<string>('sans-serif')

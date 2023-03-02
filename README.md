@@ -37,12 +37,24 @@ yarn dev
 -   Shape
     -   change property: width, height, color, border, radius
     -   Circle, Square
-    -   can resized by drag corner
 
 ## TODO
 
+-   Element order, very important, could be ruled at "Sidebar"
+    maybe there's a fature in draggable for order (but dragged on sidebar)
+    save two separate object?
+    research first how other people do it
+
+-   refactor default value: at ElementGenerator and each of XSetting useState
+    must be from 1 source of truth
+-   Shape:: can resized by drag corner
+-   UX -> onclick element directly go to that setting
 -   text - add background and padding - add rounded radius - change to textarea for multiline
 -   Shortcuts: - change setting menu - delete when select element
+    show below setting. Toggle B/T/S
+-   Add arrow
+-   Save image (export as JPEG)
+
 -   save progress on localStorage
 -   save preset
 -   save action object -> for undo/redo

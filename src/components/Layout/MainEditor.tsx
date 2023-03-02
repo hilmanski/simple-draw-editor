@@ -1,4 +1,3 @@
-import Draggable from 'react-draggable'
 import { useAtom, useAtomValue } from 'jotai'
 import {
     bgWidthAtom,
@@ -7,16 +6,21 @@ import {
     currentToolAtom,
     drawElementsAtom,
     currentElementAtom,
+    currentShapeAtom,
 } from '../../state/jotaiState'
-import { addNewTextElement } from '../../utils/AddElement'
+import {
+    addNewShapeElement,
+    addNewTextElement,
+} from '../../utils/ElementGenerator'
 import TextElement from '../Elements/TextElement'
+import ShapeElement from '../Elements/ShapeElement'
 
 export default function MainEditor() {
     const [width] = useAtom(bgWidthAtom)
     const [height] = useAtom(bgHeightAtom)
     const [bgColor] = useAtom(bgColorAtom)
     const currentTool = useAtomValue(currentToolAtom)
-
+    const currentShape = useAtomValue(currentShapeAtom)
     const [drawElements, setDrawElements] = useAtom(drawElementsAtom)
     const [currentElement, setCurrentElement] = useAtom(currentElementAtom)
 
@@ -32,6 +36,8 @@ export default function MainEditor() {
                 const element = drawElements.find(
                     (element) => element.id === id
                 )
+
+                console.log('selected el: ', element)
                 if (element) setCurrentElement(element)
 
                 return
@@ -54,15 +60,23 @@ export default function MainEditor() {
         // Perform Action
         switch (currentTool) {
             case 'text':
-                addText(e, x, y)
+                addText(x, y)
+                break
+            case 'shape':
+                addShape(x, y)
                 break
             default:
                 break
         }
     }
 
-    function addText(e: React.MouseEvent, x: number, y: number) {
+    function addText(x: number, y: number) {
         const newElement = addNewTextElement(x, y)
+        setDrawElements([...drawElements, newElement])
+    }
+
+    function addShape(x: number, y: number) {
+        const newElement = addNewShapeElement(x, y, currentShape)
         setDrawElements([...drawElements, newElement])
     }
 
@@ -81,11 +95,11 @@ export default function MainEditor() {
                 onClick={(e) => handleClick(e)}>
                 {/* Drawn Elements inside canvas */}
                 {drawElements.map((element) => {
-                    return (
-                        element.type === 'text' && (
-                            <TextElement key={element.id} {...element} />
-                        )
-                    )
+                    if (element.type === 'text')
+                        return <TextElement key={element.id} {...element} />
+
+                    if (element.type === 'shape')
+                        return <ShapeElement key={element.id} {...element} />
                 })}
             </div>
         </main>

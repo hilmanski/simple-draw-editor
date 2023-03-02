@@ -1,4 +1,6 @@
 import { useAtom, useAtomValue } from 'jotai'
+import { useState } from 'react'
+import Draggable from 'react-draggable'
 import {
     bgWidthAtom,
     bgHeightAtom,
@@ -6,7 +8,7 @@ import {
     currentToolAtom,
 } from '../../state/jotaiState'
 
-import { addText } from '../../utils/tools'
+// import { addText } from '../../utils/tools'
 
 export default function MainEditor() {
     const [width] = useAtom(bgWidthAtom)
@@ -14,13 +16,23 @@ export default function MainEditor() {
     const [bgColor] = useAtom(bgColorAtom)
     const currentTool = useAtomValue(currentToolAtom)
 
+    const [drawElements, setDrawElements] = useState<any[]>([])
+
     const handleClick = (e: React.MouseEvent) => {
         if (currentTool === 'background') return
 
-        // get x and y coordinate relative to the div
+        // Prevent if drawElement is dragged/clicked
+        if (e.target instanceof HTMLElement) {
+            if (e.target.classList.contains('drawElement')) {
+                return
+            }
+        }
+
+        // Get x and y coordinate relative to the div
         const x = e.clientX - e.currentTarget.getBoundingClientRect().left
         const y = e.clientY - e.currentTarget.getBoundingClientRect().top
 
+        // Perform Action
         switch (currentTool) {
             case 'text':
                 addText(e, x, y)
@@ -28,6 +40,23 @@ export default function MainEditor() {
             default:
                 break
         }
+    }
+
+    function addText(e: React.MouseEvent, x: number, y: number) {
+        const newElement = (
+            <Draggable>
+                <span
+                    className="drawElement"
+                    style={{
+                        position: 'absolute',
+                        left: `${x}px`,
+                        top: `${y}px`,
+                    }}>
+                    Text
+                </span>
+            </Draggable>
+        )
+        setDrawElements([...drawElements, newElement])
     }
 
     return (
@@ -41,7 +70,11 @@ export default function MainEditor() {
                     height: `${height}px`,
                     backgroundColor: `${bgColor}`,
                 }}
-                onClick={(e) => handleClick(e)}></div>
+                onClick={(e) => handleClick(e)}>
+                {drawElements.map((item, index) => (
+                    <div key={index}>{item}</div>
+                ))}
+            </div>
         </main>
     )
 }

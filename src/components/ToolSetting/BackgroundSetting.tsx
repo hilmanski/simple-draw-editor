@@ -1,6 +1,5 @@
-import { useAtom } from "jotai"
-import { bgWidthAtom, bgHeightAtom, bgColorAtom } from "../../state/jotaiState"
-
+import { useAtom } from 'jotai'
+import { bgWidthAtom, bgHeightAtom, bgColorAtom } from '../../state/jotaiState'
 
 export default function BackgroundSetting() {
     const [width, setWidth] = useAtom(bgWidthAtom)
@@ -18,40 +17,50 @@ export default function BackgroundSetting() {
     const updateBgColor = (e: React.ChangeEvent<HTMLInputElement>) => {
         setBgColor(e.target.value)
     }
-    
 
     return (
         <section>
             <p className="font-semibold mb-3">Background</p>
 
             <div>
-                <label htmlFor="width"
-                        className="inline-block w-[50px]">Width</label>
-                <input type="number" 
+                <label htmlFor="width" className="inline-block w-[50px]">
+                    Width
+                </label>
+                <input
+                    type="number"
                     id="width"
                     className="w-[70px] ml-4 mr-2"
                     value={width}
-                    onChange={updateWidth} /> px
+                    onChange={updateWidth}
+                />{' '}
+                px
             </div>
 
             <div className="mt-2">
-                <label htmlFor="height"
-                    className="inline-block w-[50px]">Height</label>
-                <input type="number" 
+                <label htmlFor="height" className="inline-block w-[50px]">
+                    Height
+                </label>
+                <input
+                    type="number"
                     id="height"
-                    className="w-[70px] ml-4 mr-2" 
+                    className="w-[70px] ml-4 mr-2"
                     value={height}
-                    onChange={updateHeigth} /> px
+                    onChange={updateHeigth}
+                />{' '}
+                px
             </div>
 
             <div className="mt-2">
-                <label htmlFor="bgColor"
-                    className="inline-block w-[50px]">Color</label>
-                <input type="color"
+                <label htmlFor="bgColor" className="inline-block w-[50px]">
+                    Color
+                </label>
+                <input
+                    type="color"
                     id="bgColor"
                     className="ml-4 mr-2"
                     value={bgColor}
-                    onChange={updateBgColor} />
+                    onChange={updateBgColor}
+                />
             </div>
         </section>
     )

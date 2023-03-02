@@ -1,7 +1,12 @@
+import { useAtomValue } from 'jotai'
+import { currentToolAtom } from '../../state/jotaiState'
+
 import ToolSetting from '../ToolSetting'
 import BackgroundSetting from '../ToolSetting/BackgroundSetting'
 
 export default function ElementEditor() {
+    const currentTool = useAtomValue(currentToolAtom)
+
     return (
         <aside className="px-5 pt-5 bg-gray-300 min-h-screen">
             <p className="font-semibold mb-5">Settings</p>
@@ -9,7 +14,8 @@ export default function ElementEditor() {
             <ToolSetting />
 
             <section className="mt-10">
-                <BackgroundSetting />
+                {currentTool === 'background' && <BackgroundSetting />}
+                {currentTool === 'text' && <p>Text</p>}
             </section>
         </aside>
     )

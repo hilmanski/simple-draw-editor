@@ -3,14 +3,13 @@ import { currentToolAtom } from '../state/jotaiState'
 import SVGIcon from './SVGIcon'
 
 export default function ToolSetting() {
-    const [currentTool, setCurrentTool] = useAtom(currentToolAtom)
+    const [_, setCurrentTool] = useAtom(currentToolAtom)
 
     return (
         <section className="flex space-x-2 items-center">
             <SVGIcon
                 tooltipText="Background"
-                onClick={() => setCurrentTool('background')}
-            >
+                onClick={() => setCurrentTool('background')}>
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
             </SVGIcon>
@@ -27,8 +26,7 @@ export default function ToolSetting() {
 
             <SVGIcon
                 tooltipText="Shape"
-                onClick={() => setCurrentTool('shape')}
-            >
+                onClick={() => setCurrentTool('shape')}>
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M5 5m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
                 <path d="M19 5m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>

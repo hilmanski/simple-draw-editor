@@ -3,6 +3,7 @@ import { currentToolAtom } from '../../state/jotaiState'
 
 import ToolSetting from '../ToolSetting'
 import BackgroundSetting from '../ToolSetting/BackgroundSetting'
+import TextSetting from '../ToolSetting/TextSetting'
 
 export default function ElementEditor() {
     const currentTool = useAtomValue(currentToolAtom)
@@ -15,7 +16,7 @@ export default function ElementEditor() {
 
             <section className="mt-10">
                 {currentTool === 'background' && <BackgroundSetting />}
-                {currentTool === 'text' && <p>Text</p>}
+                {currentTool === 'text' && <TextSetting />}
             </section>
         </aside>
     )

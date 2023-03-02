@@ -8,7 +8,7 @@ function App() {
     return (
         <section className="">
             <section className="flex">
-                <section className="w-2/12 pl-10 pr-5 bg-gray-300 min-h-screen">
+                <section className="w-2/12 px-5 bg-gray-300 min-h-screen">
                     <Sidebar />
                 </section>
 

@@ -6,7 +6,10 @@ import {
     bgHeightAtom,
     bgColorAtom,
     currentToolAtom,
+    drawElementsAtom,
+    currentElementAtom,
 } from '../../state/jotaiState'
+import { DrawElementType } from '../../types'
 
 // import { addText } from '../../utils/tools'
 
@@ -16,19 +19,37 @@ export default function MainEditor() {
     const [bgColor] = useAtom(bgColorAtom)
     const currentTool = useAtomValue(currentToolAtom)
 
-    const [drawElements, setDrawElements] = useState<any[]>([])
+    const [drawElements, setDrawElements] = useAtom(drawElementsAtom)
+    const [currentElement, setCurrentElement] = useAtom(currentElementAtom)
 
     const handleClick = (e: React.MouseEvent) => {
         if (currentTool === 'background') return
 
         // Prevent if drawElement is dragged/clicked
+        //      and select as currentElement
         if (e.target instanceof HTMLElement) {
             if (e.target.classList.contains('drawElement')) {
+                // Set currentElement
+                const id = parseInt(e.target.getAttribute('data-id') as string)
+                const element = drawElements.find(
+                    (element) => element.id === id
+                )
+                if (element) setCurrentElement(element)
+
                 return
             }
+
+            // If background is clicked, when previous element is selected
+            if (currentElement != null) {
+                setCurrentElement(null)
+                return
+            }
+
+            // If background is clicked, deselect currentElement
+            setCurrentElement(null)
         }
 
-        // Get x and y coordinate relative to the div
+        // Get x and y coordinate relative to the frame
         const x = e.clientX - e.currentTarget.getBoundingClientRect().left
         const y = e.clientY - e.currentTarget.getBoundingClientRect().top
 
@@ -43,26 +64,29 @@ export default function MainEditor() {
     }
 
     function addText(e: React.MouseEvent, x: number, y: number) {
-        const newElement = (
-            <Draggable>
-                <span
-                    className="drawElement"
-                    style={{
-                        position: 'absolute',
-                        left: `${x}px`,
-                        top: `${y}px`,
-                    }}>
-                    Text
-                </span>
-            </Draggable>
-        )
+        const uniqueId = Date.now()
+
+        const newElement: DrawElementType = {
+            type: 'text',
+            id: uniqueId,
+            x: x,
+            y: y,
+            detail: {
+                text: 'Text',
+                fontSize: 16,
+                fontFamily: 'sans-serif',
+                color: '#000000',
+            },
+        }
+
         setDrawElements([...drawElements, newElement])
     }
 
     return (
         <main
-            className="pl-10 pr-5 min-h-screen
+            className="px-5 min-h-screen
                 flex items-center justify-center ">
+            {/* Frame/Canvas */}
             <div
                 className="relative border"
                 style={{
@@ -71,9 +95,37 @@ export default function MainEditor() {
                     backgroundColor: `${bgColor}`,
                 }}
                 onClick={(e) => handleClick(e)}>
-                {drawElements.map((item, index) => (
-                    <div key={index}>{item}</div>
-                ))}
+                {/* Drawn Elements inside canvas */}
+                {drawElements.map((element) => {
+                    return (
+                        <Draggable
+                            key={element.id}
+                            defaultPosition={{ x: element.x, y: element.y }}
+                            bounds="parent">
+                            {element.type === 'text' && (
+                                <p
+                                    data-id={element.id}
+                                    data-type={element.type}
+                                    className={`
+                                            drawElement absolute cursor-move
+                                            ${
+                                                currentElement?.id ===
+                                                element.id
+                                                    ? 'border-2 border-blue-500'
+                                                    : ''
+                                            }
+                                        `}
+                                    style={{
+                                        fontSize: `${element.detail.fontSize}px`,
+                                        fontFamily: `${element.detail.fontFamily}`,
+                                        color: `${element.detail.color}`,
+                                    }}>
+                                    {element.detail.text}
+                                </p>
+                            )}
+                        </Draggable>
+                    )
+                })}
             </div>
         </main>
     )

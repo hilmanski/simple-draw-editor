@@ -3,6 +3,7 @@ import { currentToolAtom } from '../../state/jotaiState'
 
 import ToolSetting from '../ToolSetting'
 import BackgroundSetting from '../ToolSetting/BackgroundSetting'
+import ShapeSetting from '../ToolSetting/ShapeSetting'
 import TextSetting from '../ToolSetting/TextSetting'
 
 export default function ElementEditor() {
@@ -17,6 +18,7 @@ export default function ElementEditor() {
             <section className="mt-10">
                 {currentTool === 'background' && <BackgroundSetting />}
                 {currentTool === 'text' && <TextSetting />}
+                {currentTool === 'shape' && <ShapeSetting />}
             </section>
         </aside>
     )

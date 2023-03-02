@@ -123,7 +123,9 @@ export default function TextSetting() {
             </div>
 
             <p className="mt-5 text-sm text-gray-800">
-                *Hint: click on canvas to add text
+                Hint:
+                <li> click on canvas to add text</li>
+                <li>Double click on text to edit</li>
             </p>
         </section>
     )

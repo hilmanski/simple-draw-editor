@@ -3,6 +3,8 @@
 
 export type ToolType = 'background' | 'text' | 'shape'
 
+export type ShapeType = 'rectangle' | 'circle' | 'triangle' | 'line'
+
 export type DrawElementType = {
     type: ToolType
     id: number

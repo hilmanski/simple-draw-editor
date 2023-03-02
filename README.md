@@ -8,11 +8,15 @@ Simple Draw - with text and element's drag n drop feature
 
 ## DOING
 
--   add text
-    -   reposition
-    -   change color
-    -   edit text
-    -   change size
+-   add text [DONE]
+
+    -   reposition [DONE]
+    -   change color [DONE]
+    -   change size [DONE]
+    -   edit text on double click (how to make it editable)
+
+-   Show element list in FIles/Elements
+    Name = text {id} -> save name in state - name could be edited (name shown in files/elements)
 
 ## TODO
 

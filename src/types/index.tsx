@@ -9,4 +9,5 @@ export type DrawElementType = {
     x: number
     y: number
     detail: any
+    onEditMode?: boolean
 }

@@ -1,10 +1,22 @@
+import { DrawElementType } from '../types'
+
 // Adding Text to main element
-export const addText = (e: React.MouseEvent, x: number, y: number) => {
-    const span = document.createElement('span') as HTMLSpanElement
-    span.classList.add('text')
-    span.style.position = 'absolute'
-    span.style.left = `${x}px`
-    span.style.top = `${y}px`
-    span.textContent = 'Text'
-    e.currentTarget.appendChild(span)
+export const addNewTextElement = (x: number, y: number) => {
+    const uniqueId = Date.now()
+
+    const newElement: DrawElementType = {
+        type: 'text',
+        id: uniqueId,
+        x: x,
+        y: y,
+        detail: {
+            text: 'Text',
+            fontSize: 24,
+            fontFamily: 'sans-serif',
+            color: '#000000',
+        },
+        onEditMode: false,
+    }
+
+    return newElement
 }

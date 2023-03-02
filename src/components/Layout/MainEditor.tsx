@@ -9,9 +9,7 @@ import {
     drawElementsAtom,
     currentElementAtom,
 } from '../../state/jotaiState'
-import { DrawElementType } from '../../types'
-
-// import { addText } from '../../utils/tools'
+import { addNewTextElement } from '../../utils/tools'
 
 export default function MainEditor() {
     const [width] = useAtom(bgWidthAtom)
@@ -64,22 +62,42 @@ export default function MainEditor() {
     }
 
     function addText(e: React.MouseEvent, x: number, y: number) {
-        const uniqueId = Date.now()
+        const newElement = addNewTextElement(x, y)
+        setDrawElements([...drawElements, newElement])
+    }
 
-        const newElement: DrawElementType = {
-            type: 'text',
-            id: uniqueId,
-            x: x,
-            y: y,
+    function updateToEditMode(id: number) {
+        if (!currentElement) return
+
+        const newElement = {
+            ...currentElement,
+            onEditMode: true,
+        }
+        const newDrawElements = drawElements.map((element) => {
+            if (element.id === currentElement.id) return newElement
+            return element
+        })
+
+        setDrawElements(newDrawElements)
+    }
+
+    function updateText(text: string, isTyping?: boolean) {
+        if (!currentElement) return
+
+        const newElement = {
+            ...currentElement,
+            onEditMode: isTyping,
             detail: {
-                text: 'Text',
-                fontSize: 24,
-                fontFamily: 'sans-serif',
-                color: '#000000',
+                ...currentElement.detail,
+                text,
             },
         }
+        const newDrawElements = drawElements.map((element) => {
+            if (element.id === currentElement.id) return newElement
+            return element
+        })
 
-        setDrawElements([...drawElements, newElement])
+        setDrawElements(newDrawElements)
     }
 
     return (
@@ -102,8 +120,32 @@ export default function MainEditor() {
                             key={element.id}
                             defaultPosition={{ x: element.x, y: element.y }}
                             bounds="parent">
-                            {element.type === 'text' && (
+                            {element.type === 'text' && element.onEditMode ? (
+                                <input
+                                    type="text"
+                                    value={element.detail.text}
+                                    onChange={(e) => {
+                                        updateText(e.target.value, true)
+                                    }}
+                                    onBlur={(e) => {
+                                        updateText(e.target.value, false)
+                                    }}
+                                    style={{
+                                        fontSize: `${element.detail.fontSize}px`,
+                                        fontFamily: `${element.detail.fontFamily}`,
+                                        color: `${element.detail.color}`,
+                                    }}
+                                    className="outline-0 absolute"
+                                    autoFocus
+                                    onFocus={(e) => {
+                                        e.target.select()
+                                    }}
+                                />
+                            ) : (
                                 <p
+                                    onDoubleClick={() => {
+                                        updateToEditMode(element.id)
+                                    }}
                                     data-id={element.id}
                                     data-type={element.type}
                                     className={`

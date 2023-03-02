@@ -15,8 +15,16 @@ export default function Sidebar() {
     const toggleVisibility = (id: number) => {
         const newDrawElements = drawElements.map((element) => {
             if (element.id === id) {
+                console.log('toggle ', element)
+                return {
+                    ...element,
+                    visible: !element.visible,
+                }
             }
+            return element
         })
+
+        setDrawElements(newDrawElements)
     }
 
     return (
@@ -32,7 +40,10 @@ export default function Sidebar() {
                         <div
                             key={element.id}
                             className="flex justify-between items-center">
-                            <p>
+                            <p
+                                className={`
+                                ${element.visible ? '' : 'text-gray-700'}
+                                `}>
                                 {element.type} -{' '}
                                 {element.detail.text.substring(0, 10)}
                             </p>

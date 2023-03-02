@@ -80,6 +80,7 @@ export default function TextElement(element: DrawElementType) {
                                     ? 'border-2 border-blue-500'
                                     : ''
                             }
+                            ${element?.visible === false ? 'hidden' : ''}
                         `}
                     style={{
                         fontSize: `${element.detail.fontSize}px`,

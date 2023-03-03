@@ -1,13 +1,15 @@
 import { useAtomValue } from 'jotai'
 import { DrawElementType, ShapeType } from '../types'
 
+const generateId = () => Date.now().toString()
+
 // Adding Text to main element
 export const addNewTextElement = (x: number, y: number, zIndex: number) => {
     const uniqueId = Date.now()
 
     const newElement: DrawElementType = {
         type: 'text',
-        id: uniqueId,
+        id: generateId(),
         x: x,
         y: y,
         zIndex: zIndex,
@@ -30,12 +32,10 @@ export const addNewShapeElement = (
     zIndex: number,
     currentShape: ShapeType
 ) => {
-    const uniqueId = Date.now()
-
     const newElement: DrawElementType = {
         type: 'shape',
         subType: currentShape,
-        id: uniqueId,
+        id: generateId(),
         x: x,
         y: y,
         zIndex: zIndex,

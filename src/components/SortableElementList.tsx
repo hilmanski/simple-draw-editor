@@ -1,23 +1,28 @@
 import { useAtom } from 'jotai'
-import { drawElementsAtom } from '../state/jotaiState'
-import { DrawElementType } from '../types'
+import { drawElementIdsAtom, drawElementsAtom } from '../state/jotaiState'
 import SVGIcon from './SVGIcon'
 
-export default function SortableElementList({
-    element,
-}: {
-    element: DrawElementType
-}) {
-    const [drawElements, setDrawElements] = useAtom(drawElementsAtom)
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
-    const deleteElement = (id: number) => {
+export default function SortableElementList({ id }: { id: string }) {
+    const [drawElements, setDrawElements] = useAtom(drawElementsAtom)
+    const [drawElementIds, setDrawElementIds] = useAtom(drawElementIdsAtom)
+    const element = drawElements.find((element) => element.id === id)
+
+    const deleteElement = (id: string) => {
         const newDrawElements = drawElements.filter(
             (element) => element.id !== id
         )
         setDrawElements(newDrawElements)
+
+        const newDrawElementIds = drawElementIds.filter(
+            (elementId) => elementId !== id
+        )
+        setDrawElementIds(newDrawElementIds)
     }
 
-    const toggleVisibility = (id: number) => {
+    const toggleVisibility = (id: string) => {
         const newDrawElements = drawElements.map((element) => {
             if (element.id === id) {
                 console.log('toggle ', element)
@@ -43,10 +48,28 @@ export default function SortableElementList({
         }
     }
 
+    // Sortable DNDKit Setting
+    const { attributes, listeners, setNodeRef, transform, transition } =
+        useSortable({
+            id: id,
+        })
+
+    const dndStyle = {
+        transform: CSS.Transform.toString(transform),
+        transition,
+    }
+
+    // Render
     return (
-        <div key={element.id} className="flex justify-between items-center">
+        <div
+            ref={setNodeRef}
+            style={dndStyle}
+            {...attributes}
+            className="flex justify-between items-center">
             <p
+                {...listeners}
                 className={`
+            handle 
             ${element.visible ? '' : 'text-gray-700'}
             `}>
                 {element.type} - {getDetails(element)}

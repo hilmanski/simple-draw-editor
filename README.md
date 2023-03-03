@@ -14,6 +14,8 @@ Using raw HTML element, without canvas
 -   Change frame (main backgorund) -> (default setting on right side) change the detail
 -   Add text anywhere -> Choose text mode on Setting, then click on frame area
 -   Edit text -> double click on text
+-   Same with shape
+-   Sort element position by drag and drop in Elements
 
 ## Tech Stack
 
@@ -21,6 +23,8 @@ Using raw HTML element, without canvas
 -   Jotai (state management)
 -   Tailwind CSS
 -   Icons from tabler-icons.io
+-   Draggable
+-   React DnDKit
 
 ## Dev
 

@@ -7,6 +7,7 @@ import {
     drawElementsAtom,
     currentElementAtom,
     currentShapeAtom,
+    drawElementIdsAtom,
 } from '../../state/jotaiState'
 import {
     addNewShapeElement,
@@ -23,6 +24,7 @@ export default function MainEditor() {
     const currentTool = useAtomValue(currentToolAtom)
     const currentShape = useAtomValue(currentShapeAtom)
     const [drawElements, setDrawElements] = useAtom(drawElementsAtom)
+    const [drawElementIds, setDrawElementIds] = useAtom(drawElementIdsAtom)
     const [currentElement, setCurrentElement] = useAtom(currentElementAtom)
 
     const handleClick = (e: React.MouseEvent) => {
@@ -33,7 +35,7 @@ export default function MainEditor() {
         if (e.target instanceof HTMLElement) {
             if (e.target.classList.contains('drawElement')) {
                 // Set currentElement
-                const id = parseInt(e.target.getAttribute('data-id') as string)
+                const id = e.target.getAttribute('data-id')
                 const element = drawElements.find(
                     (element) => element.id === id
                 )
@@ -71,7 +73,10 @@ export default function MainEditor() {
                 break
         }
 
+        if (newElement == null) return
+
         setDrawElements([...drawElements, newElement])
+        setDrawElementIds([...drawElementIds, newElement.id])
     }
 
     function _getZIndex(): number {

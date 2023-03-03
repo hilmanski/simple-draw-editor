@@ -20,7 +20,7 @@ export default function ShapeElement(element: DrawElementType) {
 
 function renderShape(
     element: DrawElementType,
-    currentElement_id: number | undefined
+    currentElement_id: string | undefined
 ) {
     switch (element.detail.shape) {
         case 'circle':
@@ -45,7 +45,9 @@ function renderShape(
                         backgroundColor: element.detail.color,
                         borderRadius: element.detail.borderRadius,
                         border: `${element.detail.borderWidth}px solid ${element.detail.borderColor}`,
-                    }}></div>
+                    }}>
+                    {element.id}
+                </div>
             )
         default:
             return <></>

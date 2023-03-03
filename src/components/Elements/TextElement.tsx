@@ -8,7 +8,7 @@ export default function TextElement(element: DrawElementType) {
     const [drawElements, setDrawElements] = useAtom(drawElementsAtom)
     const [currentElement, _] = useAtom(currentElementAtom)
 
-    function updateToEditMode(id: number) {
+    function updateToEditMode(id: string) {
         if (!currentElement) return
 
         const newElement = {
@@ -88,7 +88,7 @@ export default function TextElement(element: DrawElementType) {
                         color: `${element.detail.color}`,
                         zIndex: element.zIndex,
                     }}>
-                    {element.detail.text}
+                    {element.detail.text} - {element.id}
                 </p>
             )}
         </Draggable>

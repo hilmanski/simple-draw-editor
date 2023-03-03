@@ -9,6 +9,7 @@ export const currentToolAtom = atom<ToolType>('background')
 export const currentShapeAtom = atom<ShapeType>('rectangle')
 export const drawElementsAtom = atom<any[]>([])
 export const currentElementAtom = atom<DrawElementType | null>(null)
+export const drawElementIdsAtom = atom<string[]>([])
 
 // Background setting
 export const bgWidthAtom = atom<number>(500)

@@ -27,6 +27,11 @@ export default function ShapeSetting() {
         defaultValue.shape.borderColor
     )
 
+    const highlightSelectedTool = (tool: string) => {
+        if (currentShape === tool) return 'bg-gray-400'
+        return ''
+    }
+
     useEffect(() => {
         if (currentElement == null) return
 
@@ -96,21 +101,37 @@ export default function ShapeSetting() {
             <p className="font-semibold mb-5">Choose Shape</p>
 
             <div className="flex items-center space-x-2">
-                <SVGIcon
-                    onClick={() => {
-                        setCurrentShape('rectangle')
-                    }}>
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
-                </SVGIcon>
+                <div
+                    className={`
+                    ${highlightSelectedTool('rectangle')}
+                `}>
+                    <SVGIcon
+                        onClick={() => {
+                            setCurrentShape('rectangle')
+                        }}>
+                        <path
+                            stroke="none"
+                            d="M0 0h24v24H0z"
+                            fill="none"></path>
+                        <path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
+                    </SVGIcon>
+                </div>
 
-                <SVGIcon
-                    onClick={() => {
-                        setCurrentShape('circle')
-                    }}>
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-                </SVGIcon>
+                <div
+                    className={`
+                    ${highlightSelectedTool('circle')}
+                `}>
+                    <SVGIcon
+                        onClick={() => {
+                            setCurrentShape('circle')
+                        }}>
+                        <path
+                            stroke="none"
+                            d="M0 0h24v24H0z"
+                            fill="none"></path>
+                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                    </SVGIcon>
+                </div>
             </div>
 
             <section className="mt-5">

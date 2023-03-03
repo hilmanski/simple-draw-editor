@@ -7,7 +7,15 @@ Early progress - not ready yet
 Simple Draw - with text and element's drag n drop feature  
 Using raw HTML element, without canvas
 
-[Try online here](https://simple-draw-editor.vercel.app/) or run locally
+[Try online here simple-draw-editor.vercel.app](https://simple-draw-editor.vercel.app/) or run locally
+
+## Alternative
+
+This project is for learning purpose only.  
+You should definitely check out:
+
+-   [TLDraw](https://beta.tldraw.com/)
+-   [Excalidraw](https://excalidraw.com/)
 
 ## Usage
 
@@ -44,7 +52,7 @@ yarn dev
 -   refactor default value: at ElementGenerator and each of XSetting useState
     must be from 1 source of truth
 -   Shape:: can resized by drag corner
--   UX -> onclick element directly go to that setting
+
 -   text - add background and padding - add rounded radius - change to textarea for multiline
 -   Shortcuts: - change setting menu - delete when select element
     show below setting. Toggle B/T/S
@@ -56,7 +64,11 @@ yarn dev
 -   save action object -> for undo/redo
     research best way for this: https://www.google.com/search?q=how+to+implement+undo+redo+action+on+reactjs&oq=how+to+implement+undo+redo+action+on+reactjs&aqs=chrome..69i57j33i10i160j33i22i29i30.6951j0j1&sourceid=chrome&ie=UTF-8
 
-## DONE
+---
+
+## DONE / Changelog
+
+-   UX -> onclick element directly go to that setting
 
 -   Shape
 

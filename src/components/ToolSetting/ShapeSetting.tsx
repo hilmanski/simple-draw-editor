@@ -95,6 +95,14 @@ export default function ShapeSetting() {
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M3 3m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path>
                 </SVGIcon>
+
+                <SVGIcon
+                    onClick={() => {
+                        setCurrentShape('circle')
+                    }}>
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                </SVGIcon>
             </div>
 
             <section className="mt-5">
@@ -141,21 +149,23 @@ export default function ShapeSetting() {
 
                 <p className="mt-2 mb-2">Border</p>
 
-                <div>
-                    <label htmlFor="borderRadius" className="block">
-                        Border Radius
-                    </label>
-                    <input
-                        type="number"
-                        id="borderRadius"
-                        className="mr-2 p-1 rounded w-[120px]"
-                        value={borderRadius}
-                        onChange={(e) =>
-                            updateBorderRadius(parseInt(e.target.value))
-                        }
-                    />{' '}
-                    px
-                </div>
+                {currentShape !== 'circle' && (
+                    <div>
+                        <label htmlFor="borderRadius" className="block">
+                            Border Radius
+                        </label>
+                        <input
+                            type="number"
+                            id="borderRadius"
+                            className="mr-2 p-1 rounded w-[120px]"
+                            value={borderRadius}
+                            onChange={(e) =>
+                                updateBorderRadius(parseInt(e.target.value))
+                            }
+                        />{' '}
+                        px
+                    </div>
+                )}
 
                 <div>
                     <label htmlFor="borderWidth" className="block">

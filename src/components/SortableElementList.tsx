@@ -1,11 +1,16 @@
-import { useAtom } from 'jotai'
-import { drawElementIdsAtom, drawElementsAtom } from '../state/jotaiState'
+import { useAtom, useAtomValue } from 'jotai'
+import {
+    currentElementAtom,
+    drawElementIdsAtom,
+    drawElementsAtom,
+} from '../state/jotaiState'
 import SVGIcon from './SVGIcon'
 
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
 export default function SortableElementList({ id }: { id: string }) {
+    const currentElement = useAtomValue(currentElementAtom)
     const [drawElements, setDrawElements] = useAtom(drawElementsAtom)
     const [drawElementIds, setDrawElementIds] = useAtom(drawElementIdsAtom)
     const element = drawElements.find((element) => element.id === id)
@@ -71,6 +76,7 @@ export default function SortableElementList({ id }: { id: string }) {
                 className={`
             handle 
             ${element.visible ? '' : 'text-gray-700'}
+            ${currentElement?.id === element.id ? 'text-sky-600' : ''} 
             `}>
                 {element.type} - {getDetails(element)}
             </p>

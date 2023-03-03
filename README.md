@@ -38,13 +38,6 @@ yarn dev
 
 ## DOING
 
--   Element order, very important, could be ruled at "Sidebar"
-    maybe there's a fature in draggable for order (but dragged on sidebar)
-    save two separate object?
-    research first how other people do it
-
-(on hold)
-
 -   Shape
     -   change property: width, height, color, border, radius
     -   Circle, Square
@@ -68,6 +61,16 @@ yarn dev
     research best way for this: https://www.google.com/search?q=how+to+implement+undo+redo+action+on+reactjs&oq=how+to+implement+undo+redo+action+on+reactjs&aqs=chrome..69i57j33i10i160j33i22i29i30.6951j0j1&sourceid=chrome&ie=UTF-8
 
 ## DONE
+
+-   Shape
+
+    -   square and settings
+
+-   Element order
+    very important, could be ruled at "Sidebar"
+    maybe there's a fature in draggable for order (but dragged on sidebar)
+    save two separate object?
+    research first how other people do it
 
 -   Sidebar
 

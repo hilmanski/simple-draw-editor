@@ -24,7 +24,6 @@ function renderShape(
 ) {
     switch (element.detail.shape) {
         case 'circle':
-            return <></>
         case 'rectangle':
             return (
                 <div
@@ -43,7 +42,10 @@ function renderShape(
                         width: element.detail.width,
                         height: element.detail.height,
                         backgroundColor: element.detail.color,
-                        borderRadius: element.detail.borderRadius,
+                        borderRadius:
+                            element.subType === 'circle'
+                                ? '50%'
+                                : element.detail.borderRadius,
                         border: `${element.detail.borderWidth}px solid ${element.detail.borderColor}`,
                     }}>
                     {element.id}

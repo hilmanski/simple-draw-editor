@@ -15,7 +15,6 @@ import {
 } from '../../utils/ElementGenerator'
 import TextElement from '../Elements/TextElement'
 import ShapeElement from '../Elements/ShapeElement'
-import { DrawElementType } from '../../types'
 
 export default function MainEditor() {
     const [width] = useAtom(bgWidthAtom)

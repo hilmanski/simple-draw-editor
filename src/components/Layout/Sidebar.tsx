@@ -18,6 +18,7 @@ import {
 import SortableElementList from '../SortableElementList'
 import Footer from './Footer'
 import Header from './Header'
+import { useEffect } from 'react'
 
 export default function Sidebar() {
     // DNDKit setting for sortable drag n drop
@@ -40,26 +41,19 @@ export default function Sidebar() {
                 const newIndex = items.indexOf(over.id)
                 return arrayMove(items, oldIndex, newIndex)
             })
-
-            console.log('items: ', items)
-
-            // drawElementIdsAtom is represntation id of drawElementsAtom
-            // Each of array in drawElementsAtom has zIndex property
-            // So, we need to update zIndex property of drawElementsAtom
-
-            const newDrawElements = drawElements.map((element) => {
-                const index = items.indexOf(element.id)
-                return {
-                    ...element,
-                    zIndex: index,
-                }
-            })
-            setDrawElements(newDrawElements)
-
-            // I want when the element is move up, then the zIndex of the element is increase
-            // and when the element is move down, then the zIndex of the element is decrease
         }
     }
+
+    useEffect(() => {
+        const newDrawElements = drawElements.map((element) => {
+            const index = items.indexOf(element.id)
+            return {
+                ...element,
+                zIndex: index,
+            }
+        })
+        setDrawElements(newDrawElements)
+    }, [items])
 
     return (
         <aside className="">

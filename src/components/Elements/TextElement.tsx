@@ -88,7 +88,7 @@ export default function TextElement(element: DrawElementType) {
                         color: `${element.detail.color}`,
                         zIndex: element.zIndex,
                     }}>
-                    {element.detail.text} - {element.id}
+                    {element.detail.text}
                 </p>
             )}
         </Draggable>

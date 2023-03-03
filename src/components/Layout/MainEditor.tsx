@@ -1,4 +1,4 @@
-import { useAtom, useAtomValue } from 'jotai'
+import { useAtom } from 'jotai'
 import {
     bgWidthAtom,
     bgHeightAtom,
@@ -15,20 +15,20 @@ import {
 } from '../../utils/ElementGenerator'
 import TextElement from '../Elements/TextElement'
 import ShapeElement from '../Elements/ShapeElement'
+import { useEffect } from 'react'
+import { ShapeType } from '../../types'
 
 export default function MainEditor() {
     const [width] = useAtom(bgWidthAtom)
     const [height] = useAtom(bgHeightAtom)
     const [bgColor] = useAtom(bgColorAtom)
-    const currentTool = useAtomValue(currentToolAtom)
-    const currentShape = useAtomValue(currentShapeAtom)
+    const [currentTool, setCurrentTool] = useAtom(currentToolAtom)
+    const [currentShape, setCurrentShape] = useAtom(currentShapeAtom)
     const [drawElements, setDrawElements] = useAtom(drawElementsAtom)
     const [drawElementIds, setDrawElementIds] = useAtom(drawElementIdsAtom)
     const [currentElement, setCurrentElement] = useAtom(currentElementAtom)
 
     const handleClick = (e: React.MouseEvent) => {
-        if (currentTool === 'background') return
-
         // Prevent if drawElement is dragged/clicked
         //      and select as currentElement
         if (e.target instanceof HTMLElement) {
@@ -39,9 +39,7 @@ export default function MainEditor() {
                     (element) => element.id === id
                 )
 
-                console.log('selected el: ', element)
                 if (element) setCurrentElement(element)
-
                 return
             }
 
@@ -54,6 +52,8 @@ export default function MainEditor() {
             // If background is clicked, deselect currentElement
             setCurrentElement(null)
         }
+
+        if (currentTool === 'background') return
 
         // Get x and y coordinate relative to the frame
         const x = e.clientX - e.currentTarget.getBoundingClientRect().left
@@ -89,6 +89,14 @@ export default function MainEditor() {
     function addShape(x: number, y: number) {
         return addNewShapeElement(x, y, _getZIndex(), currentShape)
     }
+
+    useEffect(() => {
+        console.log('currentElement', currentElement)
+        setCurrentTool(currentElement ? currentElement.type : 'background')
+
+        if (currentElement?.type === 'shape')
+            setCurrentShape(currentElement.subType as ShapeType)
+    }, [currentElement])
 
     return (
         <main

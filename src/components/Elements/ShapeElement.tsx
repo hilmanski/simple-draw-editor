@@ -47,9 +47,7 @@ function renderShape(
                                 ? '50%'
                                 : element.detail.borderRadius,
                         border: `${element.detail.borderWidth}px solid ${element.detail.borderColor}`,
-                    }}>
-                    {element.id}
-                </div>
+                    }}></div>
             )
         default:
             return <></>

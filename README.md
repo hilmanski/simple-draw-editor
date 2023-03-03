@@ -38,10 +38,6 @@ yarn dev
 
 ## DOING
 
--   Shape
-    -   change property: width, height, color, border, radius
-    -   Circle, Square
-
 ## TODO
 
 -   Change Draggable with dndkit, as long as code stillr eadable ?
@@ -64,6 +60,7 @@ yarn dev
 
 -   Shape
 
+    -   circle and settings
     -   square and settings
 
 -   Element order

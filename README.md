@@ -48,16 +48,14 @@ yarn dev
 
 ## TODO
 
--   Change Draggable with dndkit, as long as code stillr eadable ?
--   refactor default value: at ElementGenerator and each of XSetting useState
-    must be from 1 source of truth
 -   Shape:: can resized by drag corner
-
 -   text - add background and padding - add rounded radius - change to textarea for multiline
--   Shortcuts: - change setting menu - delete when select element
+-   Shortcuts: - change setting menu - delete when select element - enable copy paste
     show below setting. Toggle B/T/S
 -   Add arrow
--   Save image (export as JPEG)
+-   Save image (export as JPEG) (HTML2Canvas js)
+-   Pen Tool ? (idea: wrap it in canvas? no the whole frame, just the element)
+-   Change Draggable with dndkit, as long as code stillr eadable ?
 
 -   save progress on localStorage
 -   save preset
@@ -68,6 +66,8 @@ yarn dev
 
 ## DONE / Changelog
 
+-   refactor default value: at ElementGenerator and each of XSetting useState
+    must be from 1 source of truth
 -   UX -> onclick element directly go to that setting
 
 -   Shape

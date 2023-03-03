@@ -3,6 +3,7 @@
 
 import { atom } from 'jotai'
 import { DrawElementType, ToolType, ShapeType } from '../types'
+import { defaultValue } from '../utils/defaultValue'
 
 // General setting
 export const currentToolAtom = atom<ToolType>('background')
@@ -12,6 +13,6 @@ export const currentElementAtom = atom<DrawElementType | null>(null)
 export const drawElementIdsAtom = atom<string[]>([])
 
 // Background setting
-export const bgWidthAtom = atom<number>(500)
-export const bgHeightAtom = atom<number>(500)
-export const bgColorAtom = atom<string>('#ffffff')
+export const bgWidthAtom = atom<number>(defaultValue.background.width)
+export const bgHeightAtom = atom<number>(defaultValue.background.height)
+export const bgColorAtom = atom<string>(defaultValue.background.color)

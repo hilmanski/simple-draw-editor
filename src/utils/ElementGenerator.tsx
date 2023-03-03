@@ -1,12 +1,10 @@
-import { useAtomValue } from 'jotai'
 import { DrawElementType, ShapeType } from '../types'
+import { defaultValue } from './defaultValue'
 
 const generateId = () => Date.now().toString()
 
 // Adding Text to main element
 export const addNewTextElement = (x: number, y: number, zIndex: number) => {
-    const uniqueId = Date.now()
-
     const newElement: DrawElementType = {
         type: 'text',
         id: generateId(),
@@ -14,10 +12,10 @@ export const addNewTextElement = (x: number, y: number, zIndex: number) => {
         y: y,
         zIndex: zIndex,
         detail: {
-            text: 'Text',
-            fontSize: 24,
-            fontFamily: 'sans-serif',
-            color: '#000000',
+            text: defaultValue.text.value,
+            fontSize: defaultValue.text.fontSize,
+            fontFamily: defaultValue.text.fontFamily,
+            color: defaultValue.text.color,
         },
         visible: true,
         onEditMode: false,
@@ -41,12 +39,12 @@ export const addNewShapeElement = (
         zIndex: zIndex,
         detail: {
             shape: currentShape,
-            width: 100,
-            height: 100,
-            color: '#ffffff',
-            borderColor: '#000000',
-            borderWidth: 1,
-            borderRadius: 5,
+            width: defaultValue.shape.width,
+            height: defaultValue.shape.height,
+            color: defaultValue.shape.color,
+            borderColor: defaultValue.shape.borderColor,
+            borderWidth: defaultValue.shape.borderWidth,
+            borderRadius: defaultValue.shape.borderRadius,
         },
         visible: true,
     }

@@ -5,6 +5,8 @@ import {
     currentShapeAtom,
     drawElementsAtom,
 } from '../../state/jotaiState'
+
+import { defaultValue } from '../../utils/defaultValue'
 import SVGIcon from '../SVGIcon'
 
 export default function ShapeSetting() {
@@ -12,12 +14,18 @@ export default function ShapeSetting() {
     const [currentElement, _] = useAtom(currentElementAtom)
     const [currentShape, setCurrentShape] = useAtom(currentShapeAtom)
 
-    const [width, setWidth] = useState<number>(100)
-    const [height, setHeight] = useState<number>(100)
-    const [color, setColor] = useState<string>('#ffffff')
-    const [borderRadius, setBorderRadius] = useState<number>(5)
-    const [borderWidth, setBorderWidth] = useState<number>(1)
-    const [borderColor, setBorderColor] = useState<string>('#000000')
+    const [width, setWidth] = useState<number>(defaultValue.shape.width)
+    const [height, setHeight] = useState<number>(defaultValue.shape.height)
+    const [color, setColor] = useState<string>(defaultValue.shape.color)
+    const [borderRadius, setBorderRadius] = useState<number>(
+        defaultValue.shape.borderRadius
+    )
+    const [borderWidth, setBorderWidth] = useState<number>(
+        defaultValue.shape.borderWidth
+    )
+    const [borderColor, setBorderColor] = useState<string>(
+        defaultValue.shape.borderColor
+    )
 
     useEffect(() => {
         if (currentElement == null) return

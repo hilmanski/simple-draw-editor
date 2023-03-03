@@ -1,14 +1,17 @@
 import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'
 import { currentElementAtom, drawElementsAtom } from '../../state/jotaiState'
+import { defaultValue } from '../../utils/defaultValue'
 
 export default function TextSetting() {
     const [drawElements, setDrawElements] = useAtom(drawElementsAtom)
     const [currentElement, _] = useAtom(currentElementAtom)
 
-    const [fontSize, setFontSize] = useState<number>(24)
-    const [fontFamily, setFontFamily] = useState<string>('sans-serif')
-    const [color, setColor] = useState<string>('#000000')
+    const [fontSize, setFontSize] = useState<number>(defaultValue.text.fontSize)
+    const [fontFamily, setFontFamily] = useState<string>(
+        defaultValue.text.fontFamily
+    )
+    const [color, setColor] = useState<string>(defaultValue.text.color)
 
     const updateFontSize = (newFontSize: number) => {
         setFontSize(newFontSize)

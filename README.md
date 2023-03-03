@@ -34,17 +34,20 @@ yarn dev
 
 ## DOING
 
+-   Element order, very important, could be ruled at "Sidebar"
+    maybe there's a fature in draggable for order (but dragged on sidebar)
+    save two separate object?
+    research first how other people do it
+
+(on hold)
+
 -   Shape
     -   change property: width, height, color, border, radius
     -   Circle, Square
 
 ## TODO
 
--   Element order, very important, could be ruled at "Sidebar"
-    maybe there's a fature in draggable for order (but dragged on sidebar)
-    save two separate object?
-    research first how other people do it
-
+-   Change Draggable with dndkit, as long as code stillr eadable ?
 -   refactor default value: at ElementGenerator and each of XSetting useState
     must be from 1 source of truth
 -   Shape:: can resized by drag corner

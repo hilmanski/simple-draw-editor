@@ -39,6 +39,7 @@ function renderShape(
                         ${element?.visible === false ? 'hidden' : ''}
                     `}
                     style={{
+                        zIndex: element.zIndex,
                         width: element.detail.width,
                         height: element.detail.height,
                         backgroundColor: element.detail.color,

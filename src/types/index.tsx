@@ -14,4 +14,5 @@ export type DrawElementType = {
     detail: any
     visible: boolean
     onEditMode?: boolean
+    zIndex: number
 }

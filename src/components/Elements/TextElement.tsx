@@ -61,7 +61,7 @@ export default function TextElement(element: DrawElementType) {
                         fontFamily: `${element.detail.fontFamily}`,
                         color: `${element.detail.color}`,
                     }}
-                    className="outline-0 absolute"
+                    className="outline-0 absolute z-[999]"
                     autoFocus
                     onFocus={(e) => {
                         e.target.select()
@@ -86,6 +86,7 @@ export default function TextElement(element: DrawElementType) {
                         fontSize: `${element.detail.fontSize}px`,
                         fontFamily: `${element.detail.fontFamily}`,
                         color: `${element.detail.color}`,
+                        zIndex: element.zIndex,
                     }}>
                     {element.detail.text}
                 </p>

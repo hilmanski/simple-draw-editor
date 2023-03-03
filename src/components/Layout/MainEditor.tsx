@@ -14,6 +14,7 @@ import {
 } from '../../utils/ElementGenerator'
 import TextElement from '../Elements/TextElement'
 import ShapeElement from '../Elements/ShapeElement'
+import { DrawElementType } from '../../types'
 
 export default function MainEditor() {
     const [width] = useAtom(bgWidthAtom)
@@ -58,26 +59,31 @@ export default function MainEditor() {
         const y = e.clientY - e.currentTarget.getBoundingClientRect().top
 
         // Perform Action
+        let newElement = null
         switch (currentTool) {
             case 'text':
-                addText(x, y)
+                newElement = addText(x, y)
                 break
             case 'shape':
-                addShape(x, y)
+                newElement = addShape(x, y)
                 break
             default:
                 break
         }
+
+        setDrawElements([...drawElements, newElement])
+    }
+
+    function _getZIndex(): number {
+        return (drawElements.length + 1) as number
     }
 
     function addText(x: number, y: number) {
-        const newElement = addNewTextElement(x, y)
-        setDrawElements([...drawElements, newElement])
+        return addNewTextElement(x, y, _getZIndex())
     }
 
     function addShape(x: number, y: number) {
-        const newElement = addNewShapeElement(x, y, currentShape)
-        setDrawElements([...drawElements, newElement])
+        return addNewShapeElement(x, y, _getZIndex(), currentShape)
     }
 
     return (

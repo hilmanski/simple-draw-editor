@@ -11,7 +11,7 @@ import SVGIcon from '../SVGIcon'
 
 export default function ShapeSetting() {
     const [drawElements, setDrawElements] = useAtom(drawElementsAtom)
-    const [currentElement, _] = useAtom(currentElementAtom)
+    const [currentElement] = useAtom(currentElementAtom)
     const [currentShape, setCurrentShape] = useAtom(currentShapeAtom)
 
     const [width, setWidth] = useState<number>(defaultValue.shape.width)

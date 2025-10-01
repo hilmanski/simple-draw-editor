@@ -5,7 +5,7 @@ import { defaultValue } from '../../utils/defaultValue'
 
 export default function TextSetting() {
     const [drawElements, setDrawElements] = useAtom(drawElementsAtom)
-    const [currentElement, _] = useAtom(currentElementAtom)
+    const [currentElement] = useAtom(currentElementAtom)
 
     const [fontSize, setFontSize] = useState<number>(defaultValue.text.fontSize)
     const [fontFamily, setFontFamily] = useState<string>(

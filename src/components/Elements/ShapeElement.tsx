@@ -6,7 +6,7 @@ import { DrawElementType } from '../../types'
 
 export default function ShapeElement(element: DrawElementType) {
     const [drawElements, setDrawElements] = useAtom(drawElementsAtom)
-    const [currentElement, _] = useAtom(currentElementAtom)
+    const [currentElement] = useAtom(currentElementAtom)
 
     return (
         <Draggable

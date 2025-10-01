@@ -7,8 +7,6 @@ Early progress - not ready yet
 Simple Draw - with text and element's drag n drop feature  
 Using raw HTML element, without canvas
 
-[Try online here simple-draw-editor.vercel.app](https://simple-draw-editor.vercel.app/) or run locally
-
 ## Alternative
 
 This project is for learning purpose only.  
